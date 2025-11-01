@@ -51,24 +51,21 @@ const skillsData = [
 /** Devicon class map */
 const deviconClassMap: Record<string, string | undefined> = {
   'React': 'devicon-react-original colored',
-  'Next.js': undefined, // handled via custom SVG
+  'Next.js': undefined,
   'Tailwind CSS': 'devicon-tailwindcss-plain colored',
   'Framer Motion': undefined,
   'Vite': undefined,
   'JavaScript': 'devicon-javascript-plain colored',
   'HTML5': 'devicon-html5-plain colored',
   'CSS3': 'devicon-css3-plain colored',
-
   'Python': 'devicon-python-plain colored',
   'Flask': 'devicon-flask-original colored',
   'PHP': 'devicon-php-plain colored',
   'SQLAlchemy': undefined,
   'REST APIs': undefined,
-
   'PostgreSQL': 'devicon-postgresql-plain colored',
   'MySQL': 'devicon-mysql-plain colored',
   'SQLite': 'devicon-sqlite-plain colored',
-
   'Git': 'devicon-git-plain colored',
   'VS Code': 'devicon-vscode-plain colored',
   'Figma': 'devicon-figma-plain colored'
@@ -99,27 +96,37 @@ const techColorMap: Record<string, string> = {
 
 /** Helper functions */
 function initialsFromLabel(label?: string | null): string {
-  if (!label) {
+  if (!label?.trim()) {
     return "";
   }
 
-  const parts = label.split(/\s+/).filter(Boolean);
+  const parts = label.split(/\s+/).filter(part => part && part.trim().length > 0);
   
   if (parts.length === 0) {
     return "";
   }
 
-  const first = parts[0];
-  
+  const first = parts[0]?.trim() || "";
+  if (!first) {
+    return "";
+  }
+
   if (parts.length === 1) {
     return first.slice(0, 2).toUpperCase();
   }
 
-  const second = parts[1];
-  return (first[0] + second[0]).toUpperCase();
+  const second = parts[1]?.trim() || "";
+  if (!second) {
+    return first.slice(0, 2).toUpperCase();
+  }
+
+  const firstChar = first[0] || '';
+  const secondChar = second[0] || '';
+  
+  return (firstChar + secondChar).toUpperCase();
 }
 
-function getContrastColor(hex: string) {
+function getContrastColor(hex: string): string {
   try {
     const c = hex.replace('#', '');
     const r = parseInt(c.substring(0, 2), 16);
@@ -153,7 +160,6 @@ function DeviconOrFallback({ tech }: { tech: string }) {
   const devClass = deviconClassMap[tech];
   const color = techColorMap[tech] ?? '#6B7280';
 
-  // Handle Next.js manually
   if (tech === 'Next.js') {
     return (
       <span title={tech} className="inline-flex items-center justify-center w-9 h-9">
@@ -175,10 +181,12 @@ function DeviconOrFallback({ tech }: { tech: string }) {
   }
 
   const initials = initialsFromLabel(tech);
+  const contrastColor = getContrastColor(color);
+  
   return (
     <span
       className="inline-flex items-center justify-center w-9 h-9 rounded-full text-sm font-semibold"
-      style={{ backgroundColor: color, color: getContrastColor(color) }}
+      style={{ backgroundColor: color, color: contrastColor }}
       title={tech}
     >
       {initials}
