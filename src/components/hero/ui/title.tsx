@@ -25,7 +25,7 @@ export function Title() {
   return (
     <div className="w-full grow basis-1">
       {/* Typewriter animation for the phrases - LARGER SIZE */}
-      <h1 className="text-2xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mt-8 mb-2 text-center">
+      <h1 className="text-2xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight md:mt-8 sm:mt-16 mb-2 text-center">
         <Typewriter 
           phrases={title.typewriterPhrases}
           typingSpeed={100}
@@ -36,7 +36,11 @@ export function Title() {
       </h1>
       
       {/* Logo */}
-      <Logo className="m-auto w-full max-w-[600px]" glow />
+      <Logo 
+        className="mx-auto w-32 sm:w-48 md:w-64 lg:w-full max-w-[200px]" 
+        glow 
+      />
+
       
       {/* Subtitle with highlighted words */}
       <div className="mb-8 text-center text-xl font-light text-muted-foreground">

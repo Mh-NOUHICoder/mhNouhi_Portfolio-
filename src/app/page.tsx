@@ -9,8 +9,8 @@ import { Skills } from "~/components/skills";
 export default function HomePage() {
   return (
     <main className="relative">
-      <Navbar />
-      <Hero />
+      <Navbar  />
+      <Hero  />
       <Skills />
       <Projects />
       {/* <About /> */}
