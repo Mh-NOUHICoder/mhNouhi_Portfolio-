@@ -106,7 +106,7 @@ function initialsFromLabel(label?: string | null): string {
     return "";
   }
 
-  const first = parts[0]?.trim() || "";
+  const first = parts[0]?.trim() ?? "";
   if (!first) {
     return "";
   }
@@ -115,13 +115,13 @@ function initialsFromLabel(label?: string | null): string {
     return first.slice(0, 2).toUpperCase();
   }
 
-  const second = parts[1]?.trim() || "";
+  const second = parts[1]?.trim() ?? "";
   if (!second) {
     return first.slice(0, 2).toUpperCase();
   }
 
-  const firstChar = first[0] || '';
-  const secondChar = second[0] || '';
+  const firstChar = first[0] ?? '';
+  const secondChar = second[0] ?? '';
   
   return (firstChar + secondChar).toUpperCase();
 }
