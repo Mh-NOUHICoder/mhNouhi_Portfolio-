@@ -9,10 +9,12 @@ import { useGitHubRepoData } from "~/hooks/useGitHubRepoData";
 import { useEffect, useState } from "react";
 import { cn } from "~/lib/utils";
 import { usePathname } from "next/navigation";
+import { title } from "process";
 
 // Define your navigation links
 const navLinks = [
   { href: "/", title: "Home" },
+  { href: "#skills", title: "Skills" },
   { href: "#projects", title: "Projects" },
   { href: "#", title: "Blog" },
   { href: "#contact", title: "Contact" },
