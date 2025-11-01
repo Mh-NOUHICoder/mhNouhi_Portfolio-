@@ -29,9 +29,11 @@ export function Project({
         {tech.map((text) => (
           <Badge
             key={text}
-            className="h-5 cursor-default rounded-sm border-none shadow-[2px_2px_#00000069_inset] transition-all duration-100 ease-in-out hover:translate-x-[-1px] hover:bg-white hover:shadow-[1px_1px_#00000069_inset]"
+            className="tech-badge cursor-default rounded-full border border-gray-600 bg-gray-900/50 px-3.5 py-1.5 text-xs font-medium text-gray-300 transition-all duration-300 ease-in-out hover:border-gray-400 hover:bg-gray-800 hover:text-gray-100"
           >
-            {text}
+            
+              {text}
+          
           </Badge>
         ))}
       </div>

@@ -1,5 +1,6 @@
 import { title } from "../data";
 import { Logo } from "~/components/ui/logo";
+import { Typewriter } from "./Typewriter";
 
 export function Title() {
   function parseForHighlightedWords(text: string) {
@@ -20,19 +21,24 @@ export function Title() {
       );
     });
   }
+
   return (
     <div className="w-full grow basis-1">
-      {/* Use cool glowy text */}
-      {/* <h1 className="text-nowrap text-center text-48-96 font-bold">
-        {title.plainText}
-        <GlowText text={title.glowText} />
-      </h1> */}
-
-      {/* Or use a logo */}
-      <h1 className="text-nowrap text-center text-48-96 font-bold">
-        {title.plainText}
-        <Logo className="m-auto w-full max-w-[600px]" glow />
+      {/* Typewriter animation for the phrases - LARGER SIZE */}
+      <h1 className="text-2xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mt-8 mb-2 text-center">
+        <Typewriter 
+          phrases={title.typewriterPhrases}
+          typingSpeed={100}
+          deletingSpeed={50}
+          pauseTime={1500}
+          className="text-blue-500 font-mono"
+        />
       </h1>
+      
+      {/* Logo */}
+      <Logo className="m-auto w-full max-w-[600px]" glow />
+      
+      {/* Subtitle with highlighted words */}
       <div className="mb-8 text-center text-xl font-light text-muted-foreground">
         {parseForHighlightedWords(title.subTitle)}
       </div>

@@ -1,112 +1,89 @@
 import React from "react";
 
+/**
+ * Renders the Mh.Portfolio logo, based on the provided image.
+ * Includes interconnected diamonds, inner chevrons, and a glow effect.
+ */
 export function Logo({
   className,
-  glow,
+  glow = true,
 }: {
   className?: string;
   glow?: boolean;
 }): JSX.Element {
+  
+  const iconPath =
+    "M 25 18 L 35 8 L 45 18 L 35 28 Z M 55 18 L 65 8 L 75 18 L 65 28 Z M 45 18 H 55 M 37.5 13 L 32.5 18 L 37.5 23 M 62.5 13 L 67.5 18 L 62.5 23";
+
   return (
     <svg
-      viewBox="0 0 78 38"
+      viewBox="0 0 100 44"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
-      strokeWidth="1"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className={className}
     >
       <defs>
-        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#3b82f6" />
-          <stop offset="50%" stopColor="#14b8a6" />
-          <stop offset="100%" stopColor="#ec4899" />
+        {/* Modern gradient - Clean teal to cyan */}
+        <linearGradient id="mhLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#06b6d4" /> {/* Modern cyan */}
+          <stop offset="50%" stopColor="#10b981" /> {/* Fresh emerald */}
+          <stop offset="100%" stopColor="#3b82f6" /> {/* Trustworthy blue */}
         </linearGradient>
+
+        {/* Subtle shadow for depth */}
+        <filter id="textShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="1" dy="1" stdDeviation="1" floodColor="#1e293b" floodOpacity="0.3"/>
+        </filter>
+
+        {/* Glow effect definition */}
+        <filter id="glowEffect" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+          <feMerge> 
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
       </defs>
 
+      {/* --- Glow Effect Layer (ICON ONLY) --- */}
       {glow && (
         <path
-          d="M63.5,22.3294a19.5,19.5,0,0,0-39,0"
-          stroke="url(#logoGradient)"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="blur-[2px]"
+          d={iconPath}
+          stroke="url(#mhLogoGradient)"
+          filter="url(#glowEffect)"
+          opacity="0.8"
         />
       )}
-      <path
-        d="M63.5,22.3294a19.5,19.5,0,0,0-39,0"
-        stroke="url(#logoGradient)"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        filter="url(#blur)"
+
+      {/* --- Main Crisp Layer --- */}
+      {/* Main Icon */}
+      <path 
+        d={iconPath} 
+        stroke="url(#mhLogoGradient)" 
+        className="drop-shadow-sm"
       />
-      {glow && (
-        <path
-          d="M38.4694,26.593a6.9229,6.9229,0,0,0,9.79-9.7905"
-          stroke="url(#logoGradient)"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="blur-[2px]"
-        />
-      )}
-      <path
-        d="M38.4694,26.593a6.9229,6.9229,0,0,0,9.79-9.7905"
-        stroke="url(#logoGradient)"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      {glow && (
-        <path
-          d="M43.25,33.1706a11.2273,11.2273,0,1,0,0-22.4545"
-          stroke="url(#logoGradient)"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="blur-[2px]"
-        />
-      )}
-      <path
-        d="M43.25,33.1706a11.2273,11.2273,0,1,0,0-22.4545"
-        stroke="url(#logoGradient)"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      {glow && (
-        <path
-          d="M54.6024,32.2223a14.6374,14.6374,0,1,0-20.7-20.7"
-          stroke="url(#logoGradient)"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="blur-[2px]"
-        />
-      )}
-      <path
-        d="M54.6024,32.2223a14.6374,14.6374,0,1,0-20.7-20.7"
-        stroke="url(#logoGradient)"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      {glow && (
-        <text
-          x="6"
-          y="25"
-          fontSize="12"
-          fontFamily="Arial"
-          fontWeight="bold"
-          fill="url(#logoGradient)"
-          className="blur-[3px]"
-        >
-          nextMotion
-        </text>
-      )}
+
+      {/* Modern Text with gradient and subtle shadow */}
       <text
-        x="6"
-        y="25"
-        fontSize="12"
-        fontFamily="Arial"
-        fontWeight="bold"
-        fill="white"
+        x="50"
+        y="38"
+        fontSize="10"
+        fontFamily="'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif"
+        fontWeight="700"
+        fill="url(#mhLogoGradient)"
+        textAnchor="middle"
+        filter="url(#textShadow)"
+        className="tracking-tight"
       >
-        nextMotion
+        MH.NOUHI
       </text>
+
+      {/* Optional: Subtle decorative elements */}
+      <circle cx="20" cy="36" r="1" fill="#06b6d4" opacity="0.6" />
+      <circle cx="80" cy="36" r="1" fill="#3b82f6" opacity="0.6" />
     </svg>
   );
 }

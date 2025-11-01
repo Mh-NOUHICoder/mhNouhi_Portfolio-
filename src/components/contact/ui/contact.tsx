@@ -7,7 +7,7 @@ import { MessageProvider } from "~/contexts/message-context";
 
 export function Contact() {
   return (
-    <section className="w-full bg-[#141414]">
+    <section id="contact" className="w-full bg-[#141414]">
       <div className="container">
         <SectionHeading
           title={data.title}
