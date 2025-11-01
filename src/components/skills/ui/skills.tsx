@@ -12,6 +12,7 @@ const skillsData = [
     technologies: [
       'React',
       'Next.js',
+      'TypeScript',
       'Tailwind CSS',
       'Framer Motion',
       'Vite',
@@ -52,6 +53,7 @@ const skillsData = [
 const deviconClassMap: Record<string, string | undefined> = {
   'React': 'devicon-react-original colored',
   'Next.js': undefined,
+  'TypeScript': 'devicon-typescript-plain colored',
   'Tailwind CSS': 'devicon-tailwindcss-plain colored',
   'Framer Motion': undefined,
   'Vite': undefined,
@@ -75,6 +77,7 @@ const deviconClassMap: Record<string, string | undefined> = {
 const techColorMap: Record<string, string> = {
   'React': '#61DAFB',
   'Next.js': '#000000',
+  'TypeScript': '#3178C6',
   'Tailwind CSS': '#38BDF8',
   'Framer Motion': '#0057FF',
   'Vite': '#646CFF',
