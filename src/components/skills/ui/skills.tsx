@@ -98,13 +98,26 @@ const techColorMap: Record<string, string> = {
 };
 
 /** Helper functions */
-function initialsFromLabel(label?: string) {
-  if (!label) return '';
-  const parts = label.split(/\s+/).filter(Boolean);
-  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
-  return (parts[0][0] + parts[1][0]).toUpperCase();
-}
+function initialsFromLabel(label?: string | null): string {
+  if (!label) {
+    return "";
+  }
 
+  const parts = label.split(/\s+/).filter(Boolean);
+  
+  if (parts.length === 0) {
+    return "";
+  }
+
+  const first = parts[0];
+  
+  if (parts.length === 1) {
+    return first.slice(0, 2).toUpperCase();
+  }
+
+  const second = parts[1];
+  return (first[0] + second[0]).toUpperCase();
+}
 
 function getContrastColor(hex: string) {
   try {
